@@ -1,0 +1,20 @@
+{
+  "name": "backend-server",
+  "version": "1.0.0",
+  "description": "Apollo GraphQL Server",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Prathamesh More",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server": "^2.19.0",
+    "dotenv": "^16.0.3",
+    "graphql": "^16.6.0",
+    "mongoose": "^6.9.1",
+    "nodemon": "^2.0.20"
+  }
+}
