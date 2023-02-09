@@ -1,10 +1,26 @@
 import React, { useState } from 'react'
 
+// GraphQL
+import { useMutation } from '@apollo/client'
+import { CREATE_TODO } from '../mutations'
+import { GET_TODOS } from '../queries'
 const StyledInput = () => {
-  const [value, setValue] = useState('')
-
+  const [task, setTask] = useState('')
+  const [addTodo] = useMutation(CREATE_TODO, {
+    variables: { toDoInput: { task } },
+    update(cache, { data: { createToDo } }) {
+      const { getToDos } = cache.readQuery({ query: GET_TODOS })
+      console.log(getToDos)
+      console.log('addTodo', createToDo)
+      cache.writeQuery({
+        query: GET_TODOS,
+        data: { getToDos: [...getToDos, createToDo] },
+      })
+    },
+  })
   const handleSubmit = () => {
-    console.log('Data submitted:', value)
+    addTodo({ task })
+    setTask('')
   }
 
   return (
@@ -18,8 +34,8 @@ const StyledInput = () => {
           fontSize: '1.2rem',
           flex: 1,
         }}
-        value={value}
-        onChange={(event) => setValue(event.target.value)}
+        value={task}
+        onChange={(event) => setTask(event.target.value)}
         onKeyDown={(event) => {
           if (event.key === 'Enter') {
             handleSubmit()

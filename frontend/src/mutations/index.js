@@ -17,4 +17,12 @@ const UPDATE_TODO = gql`
   }
 `
 
-export { CREATE_TODO }
+const DELETE_TODO = gql`
+  mutation DeleteToDo($toDoId: ID!) {
+    deleteToDo(toDoId: $toDoId) {
+      id
+    }
+  }
+`
+
+export { CREATE_TODO, UPDATE_TODO, DELETE_TODO }

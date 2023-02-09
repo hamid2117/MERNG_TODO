@@ -1,13 +1,18 @@
 import React from 'react'
 import style from './todo.module.css'
-// UI Components
+// Components
 import Checkbox from './ui/checkbox'
-import StyledInput from './ui/styledinput'
+import StyledInput from './styledinput'
+import DeleteTodo from './deleteTodo'
 //ReactIcons
 import { AiOutlineMenu } from 'react-icons/ai'
 import { BsChevronDown } from 'react-icons/bs'
-import { RxDragHandleDots2 } from 'react-icons/rx'
+// GraphQL
+import { useQuery } from '@apollo/client'
+import { GET_TODOS } from '../queries'
+
 const Todo = () => {
+  const { loading, error, data } = useQuery(GET_TODOS)
   return (
     <section className={style.section}>
       <div>
@@ -18,18 +23,23 @@ const Todo = () => {
         <h4>To do Today</h4>
         <BsChevronDown className={style.headerIcon} />
       </div>
-      <div className={style.todoItemMain}>
-        {[...Array(3)].map(() => {
-          return (
-            <div className={style.todoItemChild}>
-              <Checkbox />
-              <h4>work</h4>
-              <RxDragHandleDots2 />
-            </div>
-          )
-        })}
-      </div>
-
+      {loading ? (
+        <>
+          <div className='lds-hourglass'></div>
+        </>
+      ) : (
+        <div className={style.todoItemMain}>
+          {data.getToDos.map(({ task, completed, id }) => {
+            return (
+              <div key={id} className={style.todoItemChild}>
+                <Checkbox checked={completed} />
+                <h4>{task}</h4>
+                <DeleteTodo id={id} />
+              </div>
+            )
+          })}
+        </div>
+      )}
       <div>
         <StyledInput />
       </div>
