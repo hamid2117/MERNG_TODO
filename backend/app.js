@@ -1,8 +1,9 @@
 require('dotenv').config()
-const { ApolloServer, gql } = require('apollo-server')
-const connectDB = require('./db/connect')
+const { ApolloServer } = require('apollo-server')
+const resolvers = require('./graphql/resolvers')
+const typeDefs = require('./graphql/typeDefs')
 
-const server = new ApolloServer()
+const server = new ApolloServer({ typeDefs, resolvers })
 
 // The `listen` method launches a web server.
 const start = async () => {
