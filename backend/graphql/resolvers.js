@@ -2,14 +2,6 @@ const ToDo = require('../models/todo')
 
 const resolvers = {
   Query: {
-    getToDo: async (parent, args) => {
-      try {
-        const { toDoId } = args
-        return await ToDo.findById(toDoId)
-      } catch (error) {
-        throw new Error(error)
-      }
-    },
     getToDos: async (parent, args) => {
       try {
         return await ToDo.find()
@@ -28,25 +20,10 @@ const resolvers = {
         throw new Error(error)
       }
     },
-    updateToDo: async (parent, args) => {
-      try {
-        const { toDoId, toDoInput } = args
-        return await ToDo.findOneAndUpdate(toDoId, toDoInput, { new: true })
-      } catch (error) {
-        throw new Error(error)
-      }
-    },
     deleteToDo: async (parent, args) => {
       try {
         const { toDoId } = args
         return await ToDo.findByIdAndDelete(toDoId)
-      } catch (error) {
-        throw new Error(error)
-      }
-    },
-    deleteToDos: async (parent, args) => {
-      try {
-        return await ToDo.remove()
       } catch (error) {
         throw new Error(error)
       }
