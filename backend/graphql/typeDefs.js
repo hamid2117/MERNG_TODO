@@ -6,6 +6,8 @@ const typeDefs = gql`
     id: ID!
     task: String!
     completed: Boolean
+    createdAt: String
+    updatedAt: String
   }
 
   input ToDoInput {
@@ -14,7 +16,6 @@ const typeDefs = gql`
   }
 
   type Query {
-    getToDo(toDoId: ID!): ToDo!
     getToDos: [ToDo!]!
   }
 
@@ -22,7 +23,6 @@ const typeDefs = gql`
     createToDo(toDoInput: ToDoInput): ToDo
     updateToDo(toDoId: ID!, toDoInput: ToDoInput): ToDo
     deleteToDo(toDoId: ID!): ToDo
-    deleteToDos: [ToDo!]!
   }
 `
 module.exports = typeDefs

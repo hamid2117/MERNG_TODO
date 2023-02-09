@@ -20,6 +20,14 @@ const resolvers = {
         throw new Error(error)
       }
     },
+    updateToDo: async (_, args) => {
+      try {
+        const { toDoId, toDoInput } = args
+        return await ToDo.findOneAndUpdate(toDoId, toDoInput, { new: true })
+      } catch (error) {
+        throw new Error(error)
+      }
+    },
     deleteToDo: async (_, args) => {
       try {
         const { toDoId } = args
