@@ -9,8 +9,11 @@ const StyledInput = () => {
   const [task, setTask] = useState('')
   const [addTodo] = useMutation(CREATE_TODO, {
     variables: { toDoInput: { task } },
+    // Update the cache after a successful mutation
     update(cache, { data: { createToDo } }) {
+      // Read the current state of todos from the cache
       const { getToDos } = cache.readQuery({ query: GET_TODOS })
+      // Update the todos array with the new todo
       cache.writeQuery({
         query: GET_TODOS,
         data: { getToDos: [...getToDos, createToDo] },
