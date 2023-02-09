@@ -4,13 +4,13 @@ const { gql } = require('apollo-server')
 const typeDefs = gql`
   type ToDo {
     id: ID!
-    title: String!
-    description: String!
+    task: String!
+    completed: Boolean
   }
 
   input ToDoInput {
-    title: String!
-    description: String!
+    task: String!
+    completed: Boolean
   }
 
   type Query {
