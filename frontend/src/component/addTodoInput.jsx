@@ -11,8 +11,6 @@ const StyledInput = () => {
     variables: { toDoInput: { task } },
     update(cache, { data: { createToDo } }) {
       const { getToDos } = cache.readQuery({ query: GET_TODOS })
-      console.log(getToDos)
-      console.log('addTodo', createToDo)
       cache.writeQuery({
         query: GET_TODOS,
         data: { getToDos: [...getToDos, createToDo] },

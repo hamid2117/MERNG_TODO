@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  frontend:
+    build: frontend
+    container_name: frontend
+    restart: always
+    ports:
+      - 3000:3000
+    stdin_open: true
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - react-node
+    depends_on:
+      - backend
+
+  backend:
+    build: backend
+    container_name: backend
+    restart: always
+    ports:
+      - 4000:4000
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    depends_on:
+      - mongo
+    networks:
+      - node-mongo
+      - react-node
+
+  mongo:
+    container_name: mongo
+    restart: always
+    image: mongo:4.2.0
+    volumes:
+      - ./data:/data/db
+    networks:
+      - node-mongo
+    expose:
+      - 27017
+networks:
+  react-node:
+  node-mongo:

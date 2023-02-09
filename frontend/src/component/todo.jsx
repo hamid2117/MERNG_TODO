@@ -2,7 +2,7 @@ import React from 'react'
 import style from './todo.module.css'
 // Components
 import Checkbox from './ui/checkbox'
-import StyledInput from './styledinput'
+import AddTodoInput from './addTodoInput'
 import DeleteTodo from './deleteTodo'
 //ReactIcons
 import { AiOutlineMenu } from 'react-icons/ai'
@@ -41,7 +41,7 @@ const Todo = () => {
         </div>
       )}
       <div>
-        <StyledInput />
+        <AddTodoInput />
       </div>
     </section>
   )

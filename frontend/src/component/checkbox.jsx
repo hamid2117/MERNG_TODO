@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 
 // GraphQL
 import { useMutation } from '@apollo/client'
-import { UPDATE_TODO } from '../../mutations'
-import { GET_TODOS } from '../../queries'
+import { UPDATE_TODO } from '../mutations'
+import { GET_TODOS } from '../queries'
 
 const CustomCheckbox = ({ id, checked }) => {
   const [isChecked, setIsChecked] = useState(checked)
