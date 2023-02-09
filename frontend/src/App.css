@@ -1,12 +1,3 @@
-body {
-  margin: 0;
-  padding: 0;
-}
-hr {
-  margin: 0;
-  padding: 0;
-}
-
 .custom-checkbox-container {
   display: inline-block;
   position: relative;
