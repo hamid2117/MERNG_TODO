@@ -8,7 +8,16 @@ import { GET_TODOS } from '../queries'
 const DeleteTodo = ({ id }) => {
   const [deleteTodo] = useMutation(DELETE_TODO, {
     variables: { toDoId: id },
-    refetchQueries: [{ query: GET_TODOS }],
+    update(cache, { data: { deleteToDo } }) {
+      const { getToDos } = cache.readQuery({ query: GET_TODOS })
+      const updatedData = getToDos.filter((data) => {
+        return data.id !== deleteToDo.id
+      })
+      cache.writeQuery({
+        query: GET_TODOS,
+        data: { getToDos: updatedData },
+      })
+    },
   })
   return <RxDragHandleDots2 onClick={deleteTodo} />
 }

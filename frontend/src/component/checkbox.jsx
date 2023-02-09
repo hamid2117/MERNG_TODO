@@ -10,6 +10,22 @@ const CustomCheckbox = ({ id, checked }) => {
   const [trigger] = useMutation(UPDATE_TODO, {
     variables: { toDoId: id, completed: !isChecked },
     refetchQueries: [{ query: GET_TODOS }],
+    update(cache, { data: { updateToDo } }) {
+      const { getToDos } = cache.readQuery({ query: GET_TODOS })
+      const updatedData = getToDos.map((data) => {
+        if (data.id === updateToDo.id) {
+          return {
+            completed: updateToDo.completed,
+            task: updateToDo.task,
+          }
+        }
+        return data
+      })
+      cache.writeQuery({
+        query: GET_TODOS,
+        data: { getToDos: updatedData },
+      })
+    },
   })
   const handleChange = () => {
     setIsChecked(!isChecked)

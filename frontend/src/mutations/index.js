@@ -11,6 +11,7 @@ const CREATE_TODO = gql`
 const UPDATE_TODO = gql`
   mutation UpdateToDo($toDoId: ID!, $completed: Boolean) {
     updateToDo(toDoId: $toDoId, completed: $completed) {
+      id
       task
       completed
     }
