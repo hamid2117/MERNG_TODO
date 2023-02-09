@@ -11,7 +11,7 @@
   "author": "Prathamesh More",
   "license": "MIT",
   "dependencies": {
-    "apollo-server": "^2.19.0",
+    "apollo-server": "^3.11.1",
     "dotenv": "^16.0.3",
     "graphql": "^16.6.0",
     "mongoose": "^6.9.1",

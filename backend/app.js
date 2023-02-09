@@ -3,6 +3,7 @@ const { ApolloServer } = require('apollo-server')
 const resolvers = require('./graphql/resolvers')
 const typeDefs = require('./graphql/typeDefs')
 
+const connectDB = require('./db/connect')
 const server = new ApolloServer({ typeDefs, resolvers })
 
 // The `listen` method launches a web server.

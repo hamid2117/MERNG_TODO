@@ -2,7 +2,7 @@ const ToDo = require('../models/todo')
 
 const resolvers = {
   Query: {
-    getToDos: async (parent, args) => {
+    getToDos: async () => {
       try {
         return await ToDo.find()
       } catch (error) {
@@ -12,7 +12,7 @@ const resolvers = {
   },
 
   Mutation: {
-    createToDo: async (parent, args) => {
+    createToDo: async (_, args) => {
       try {
         const { toDoInput } = args
         return await ToDo.create(toDoInput)
@@ -20,7 +20,7 @@ const resolvers = {
         throw new Error(error)
       }
     },
-    deleteToDo: async (parent, args) => {
+    deleteToDo: async (_, args) => {
       try {
         const { toDoId } = args
         return await ToDo.findByIdAndDelete(toDoId)

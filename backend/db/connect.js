@@ -1,10 +1,10 @@
 const mongoose = require('mongoose')
 //Connect to database
-const connectDB = (url) => {
+mongoose.set('strictQuery', false)
+const connectDB = () => {
   return mongoose.connect(process.env.DATABASE_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useFindAndModify: false,
   })
 }
 
