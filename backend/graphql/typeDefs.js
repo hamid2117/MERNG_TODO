@@ -21,7 +21,7 @@ const typeDefs = gql`
 
   type Mutation {
     createToDo(toDoInput: ToDoInput): ToDo
-    updateToDo(toDoId: ID!, toDoInput: ToDoInput): ToDo
+    updateToDo(toDoId: ID!, completed: Boolean): ToDo
     deleteToDo(toDoId: ID!): ToDo
   }
 `

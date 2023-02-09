@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { CREATE_TODO } from '../mutations'
 import { GET_TODOS } from '../queries'
+
 const StyledInput = () => {
   const [task, setTask] = useState('')
   const [addTodo] = useMutation(CREATE_TODO, {

@@ -22,8 +22,8 @@ const resolvers = {
     },
     updateToDo: async (_, args) => {
       try {
-        const { toDoId, toDoInput } = args
-        return await ToDo.findOneAndUpdate(toDoId, toDoInput, { new: true })
+        const { toDoId, completed } = args
+        return await ToDo.findOneAndUpdate(toDoId, { completed }, { new: true })
       } catch (error) {
         throw new Error(error)
       }

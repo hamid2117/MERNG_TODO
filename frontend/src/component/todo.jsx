@@ -12,7 +12,7 @@ import { useQuery } from '@apollo/client'
 import { GET_TODOS } from '../queries'
 
 const Todo = () => {
-  const { loading, error, data } = useQuery(GET_TODOS)
+  const { loading, data } = useQuery(GET_TODOS)
   return (
     <section className={style.section}>
       <div>
@@ -32,7 +32,7 @@ const Todo = () => {
           {data.getToDos.map(({ task, completed, id }) => {
             return (
               <div key={id} className={style.todoItemChild}>
-                <Checkbox checked={completed} />
+                <Checkbox id={id} checked={completed} />
                 <h4>{task}</h4>
                 <DeleteTodo id={id} />
               </div>
